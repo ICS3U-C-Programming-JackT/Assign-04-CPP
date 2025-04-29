@@ -6,15 +6,12 @@
 
 #include <cstdlib>
 #include <iostream>
-#include <limits>
-#include <thread>
 #include <vector>
-
-using namespace std;
+#include <string>
 
 // Generate an array with random numbers
-vector<int> setupArray(int length) {
-    vector<int> array;
+std::vector<int> setupArray(int length) {
+    std::vector<int> array;
     for (int i = 0; i < length; i++) {
         array.push_back(rand() % 99 + 1);  // Numbers from 1 to 99
     }
@@ -22,12 +19,12 @@ vector<int> setupArray(int length) {
 }
 
 // Perform bubble sort and update the sorted array + iteration count
-vector<int> bubbleSort(vector<int> inputArray) {
+std::vector<int> bubbleSort(std::vector<int> inputArray) {
     int length = inputArray.size();
     int iterations = 0;
 
-    string red = "\033[91m";
-    string reset = "\033[0m";
+    std::string red = "\033[91m";
+    std::string reset = "\033[0m";
 
     while (true) {
         bool isSorted = true;
@@ -47,11 +44,11 @@ vector<int> bubbleSort(vector<int> inputArray) {
             if (inputArray[i - 1] > inputArray[i]) {
                 for (int j = 0; j < length; j++) {
                     if (j == i || j == i - 1)
-                        cout << red << inputArray[j] << reset << " ";
+                        std::cout << red << inputArray[j] << reset << " ";
                     else
-                        cout << inputArray[j] << " ";
+                        std::cout << inputArray[j] << " ";
                 }
-                cout << endl;
+                std::cout << std::endl;
 
                 int temp = inputArray[i - 1];
                 inputArray[i - 1] = inputArray[i];
@@ -60,7 +57,7 @@ vector<int> bubbleSort(vector<int> inputArray) {
         }
     }
 
-    cout << "Iterations: " << iterations << endl;
+    std::cout << "Iterations: " << iterations << std::endl;
     return inputArray;
 }
 
@@ -74,45 +71,47 @@ int main() {
         std::cin >> length;
 
         try {
-            vector<int> originalArray = setupArray(length);
+            std::vector<int> originalArray = setupArray(length);
 
             std::cout << "Your array is: ";
             for (int num : originalArray) {
                 std::cout << num << " ";
             }
-            std::cout << endl;
+            std::cout << std::endl;
 
             std::vector<int> sortedArray;
 
             int iterations;
-            
             sortedArray = bubbleSort(originalArray);
 
             std::cout << "Your original array was: ";
             for (int num : originalArray) {
                 std::cout << num << " ";
             }
-            std::cout << endl;
+            std::cout << std::endl;
 
             std::cout << "Your new array is: ";
             for (int num : sortedArray) {
                 std::cout << num << " ";
             }
-            std::cout << endl;
+            std::cout << std::endl;
 
-            std::cout << "It took " << iterations << " iterations to sort." << endl;
-            std::cout << "The worst case would have been " << length * length << " iterations." << endl;
+            std::cout << "It took " << iterations << " iterations to sort."
+            << std::endl;
+            std::cout << "The worst case would have been " << length * length
+            << " iterations." << std::endl;
 
-            string restart;
+            std::string restart;
             std::cout << "Try again? (yes/no): ";
             std::cin >> restart;
 
             if (restart != "yes") {
-                std::cout << "Thanks for using my sorting program!" << endl;
+                std::cout << "Thanks for using my sorting program!"
+                << std::endl;
                 break;
             }
-        } catch(std::invalid_argument){
-            std::cout << "Please enter a positive integer!" << endl;
+        } catch(std::invalid_argument) {
+            std::cout << "Please enter a positive integer!" << std::endl;
         }
     }
 }
