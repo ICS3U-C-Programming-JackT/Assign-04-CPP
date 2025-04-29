@@ -1,0 +1,118 @@
+// Copyright (c) 2025 Jack Turcotte All rights reserved.
+//
+// Created by: Jack Turcotte
+// Date: April 29, 2025
+// Bubblesort program in C++
+
+#include <cstdlib>
+#include <iostream>
+#include <limits>
+#include <thread>
+#include <vector>
+
+using namespace std;
+
+// Generate an array with random numbers
+vector<int> setupArray(int length) {
+    vector<int> array;
+    for (int i = 0; i < length; i++) {
+        array.push_back(rand() % 99 + 1);  // Numbers from 1 to 99
+    }
+    return array;
+}
+
+// Perform bubble sort and update the sorted array + iteration count
+vector<int> bubbleSort(vector<int> inputArray) {
+    int length = inputArray.size();
+    int iterations = 0;
+
+    string red = "\033[91m";
+    string reset = "\033[0m";
+
+    while (true) {
+        bool isSorted = true;
+
+        for (int i = 1; i < length; i++) {
+            if (inputArray[i - 1] > inputArray[i]) {
+                isSorted = false;
+                break;
+            }
+        }
+
+        if (isSorted) break;
+
+        for (int i = 1; i < length; i++) {
+            iterations++;
+
+            if (inputArray[i - 1] > inputArray[i]) {
+                for (int j = 0; j < length; j++) {
+                    if (j == i || j == i - 1)
+                        cout << red << inputArray[j] << reset << " ";
+                    else
+                        cout << inputArray[j] << " ";
+                }
+                cout << endl;
+
+                int temp = inputArray[i - 1];
+                inputArray[i - 1] = inputArray[i];
+                inputArray[i] = temp;
+            }
+        }
+    }
+
+    cout << "Iterations: " << iterations << endl;
+    return inputArray;
+}
+
+int main() {
+    srand(time(0));  // Seed random number generator
+
+    while (true) {
+        int length;
+
+        std::cout << "Please enter an integer length for your array: ";
+        std::cin >> length;
+
+        try {
+            vector<int> originalArray = setupArray(length);
+
+            std::cout << "Your array is: ";
+            for (int num : originalArray) {
+                std::cout << num << " ";
+            }
+            std::cout << endl;
+
+            std::vector<int> sortedArray;
+
+            int iterations;
+            
+            sortedArray = bubbleSort(originalArray);
+
+            std::cout << "Your original array was: ";
+            for (int num : originalArray) {
+                std::cout << num << " ";
+            }
+            std::cout << endl;
+
+            std::cout << "Your new array is: ";
+            for (int num : sortedArray) {
+                std::cout << num << " ";
+            }
+            std::cout << endl;
+
+            std::cout << "It took " << iterations << " iterations to sort." << endl;
+            std::cout << "The worst case would have been " << length * length << " iterations." << endl;
+
+            string restart;
+            std::cout << "Try again? (yes/no): ";
+            std::cin >> restart;
+
+            if (restart != "yes") {
+                std::cout << "Thanks for using my sorting program!" << endl;
+                break;
+            }
+        } catch(std::invalid_argument){
+            std::cout << "Please enter a positive integer!" << endl;
+        }
+    }
+}
