@@ -62,45 +62,55 @@ std::vector<int> bubbleSort(std::vector<int> inputArray) {
 }
 
 int main() {
-    srand(time(0));  // Seed random number generator
+    srand(time(0));  // Seed for random number generator
 
     while (true) {
         int length;
 
+        // Get length of array
         std::cout << "Please enter an integer length for your array: ";
         std::cin >> length;
 
         try {
+            // Call setup array function
             std::vector<int> originalArray = setupArray(length);
 
+            // Display original array
             std::cout << "Your array is: ";
             for (int num : originalArray) {
                 std::cout << num << " ";
             }
             std::cout << std::endl;
 
+            // Initialize sorted array
+
             std::vector<int> sortedArray;
 
+            // Initialize iterations, sort array
             int iterations;
             sortedArray = bubbleSort(originalArray);
 
+            // Show original array
             std::cout << "Your original array was: ";
             for (int num : originalArray) {
                 std::cout << num << " ";
             }
             std::cout << std::endl;
 
+            // Show new array
             std::cout << "Your new array is: ";
             for (int num : sortedArray) {
                 std::cout << num << " ";
             }
             std::cout << std::endl;
 
+            // Show stats, iterations, worst case
             std::cout << "It took " << iterations << " iterations to sort."
             << std::endl;
             std::cout << "The worst case would have been " << length * length
             << " iterations." << std::endl;
 
+            // Prompt restart
             std::string restart;
             std::cout << "Try again? (yes/no): ";
             std::cin >> restart;
@@ -111,6 +121,7 @@ int main() {
                 break;
             }
         } catch(std::invalid_argument) {
+            // Warn user, enter positive integer
             std::cout << "Please enter a positive integer!" << std::endl;
         }
     }
