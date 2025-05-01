@@ -105,9 +105,6 @@ int main() {
             }
             std::cout << std::endl;
 
-            // Show stats, iterations, worst case
-            std::cout << "It took " << iterations << " iterations to sort."
-            << std::endl;
             std::cout << "The worst case would have been " << length * length
             << " iterations." << std::endl;
 
