@@ -4,7 +4,6 @@
 // Date: April 29, 2025
 // Bubblesort program in C++
 
-#include <cstdlib>
 #include <iostream>
 #include <vector>
 #include <string>
@@ -50,6 +49,7 @@ std::vector<int> bubbleSort(std::vector<int> inputArray) {
                 }
                 std::cout << std::endl;
 
+                // Swapping indexes
                 int temp = inputArray[i - 1];
                 inputArray[i - 1] = inputArray[i];
                 inputArray[i] = temp;
@@ -57,6 +57,7 @@ std::vector<int> bubbleSort(std::vector<int> inputArray) {
         }
     }
 
+    // Display iterations and return the input array
     std::cout << "Iterations: " << iterations << std::endl;
     return inputArray;
 }
