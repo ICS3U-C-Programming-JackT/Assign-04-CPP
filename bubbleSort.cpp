@@ -38,7 +38,7 @@ std::vector<int> bubbleSort(std::vector<int> inputArray) {
         if (isSorted) break;
 
         for (int i = 1; i < length; i++) {
-            iterations++;
+            iterations+=1;
 
             if (inputArray[i - 1] > inputArray[i]) {
                 for (int j = 0; j < length; j++) {
